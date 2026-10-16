@@ -21,7 +21,12 @@
 
 > ⚠️ **免责声明：仅供个人学习、练习与娱乐使用。** 请自行确认并遵守《鸣潮》的用户协议；
 > 本工具通过模拟键盘输入实现，与游戏官方无任何关联，使用可能带来的账号风险由使用者自行承担。
-> 作者不对任何后果负责（见 [许可证](#13-许可证)）。
+> 作者不对任何后果负责（见 [许可证](#16-许可证)）。
+
+> 🤖 **开发声明：本项目由作者与 DSH 协作完成。**
+> [DSH](https://github.com/deepseek-ai/deepseek-harness)（DeepSeek Harness，AI 编码代理，npm 包 `@deepseek-ai/dsh`）
+> 参与了架构设计、代码实现、测试编写与打包验证；需求、取舍与最终验收由作者负责。
+> 详见 [致谢](#15-致谢与开发声明)。
 
 ---
 
@@ -188,7 +193,7 @@ python main.py
 
 ---
 
-## 4.4 半音阶模式（36 键）
+### 4.4 半音阶模式（36 键）
 
 * **默认关闭**：首次启动、配置文件缺失或损坏时一律关闭，老用户升级后行为不变。
 * **开启**：按 **F7**、勾选运输条上的「半音阶模式」、或菜单「工具 → 半音阶模式」。
@@ -681,7 +686,35 @@ python main.py --selftest    # 12 项端到端自检
 
 ---
 
-## 15. 许可证
+## 15. 致谢与开发声明
+
+**开发声明**：本项目由作者（[@dream1angel](https://github.com/dream1angel)）与 **DSH**
+（DeepSeek Harness，AI 编码代理）协作完成。
+
+* **作者负责**：需求定义与优先级、界面与交互取舍、游戏内实测与调参、最终验收与发布决策；
+* **DSH 负责辅助**：技术方案与目录结构、核心代码与界面实现、测试用例编写与回归验证、
+  打包脚本与文档整理；
+* 项目里所有需要"做决定"的地方（半音阶默认关闭、`Shift` 而非 `Ctrl` 作升半音修饰键、
+  组合键只允许一个主键等）都经过作者确认。
+
+> 换句话说：**代码主要由 AI 编写，需求与责任由作者承担**。这一点写在这里是为了让使用者
+> 对代码来源有清楚的认知，也方便其他项目参考这种人机协作方式。
+
+**致谢的开源项目**：
+
+| 项目 | 用途 |
+|---|---|
+| [PySide6 / Qt](https://www.qt.io/) | 图形界面、PNG/PDF 导出 |
+| [pydirectinput](https://github.com/learncodebygaming/pydirectinput) | SendInput + 扫描码模拟按键 |
+| [keyboard](https://github.com/boppreh/keyboard) | 全局热键 |
+| [PyInstaller](https://pyinstaller.org/) | 打包成单文件 exe |
+
+教程参考：[FF14 官方社区博客：Bard Performance](https://na.finalfantasyxiv.com/lodestone/character/5624510/blog/3708574/)
+（半音阶 FF14 风格预设的键位依据）。
+
+---
+
+## 16. 许可证
 
 以 [MIT License](LICENSE) 发布 —— 可自由使用、修改、分发（含商用），
 但**不提供任何担保**，使用本软件产生的一切后果由使用者自行承担。
@@ -690,4 +723,5 @@ python main.py --selftest    # 12 项端到端自检
 Copyright (c) 2026 dream1angel
 ```
 
-> 想改用真实姓名署名的话，直接改 `LICENSE` 第一行即可。
+> 想改用真实姓名或其它署名：编辑 `LICENSE` 里 `Copyright (c) 2026 ...` 那一行
+> （MIT 正文第 3 行），然后 `git commit -am "docs: 署名" && git push`。
