@@ -53,6 +53,10 @@
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
+![主界面](docs/images/main.png)
+
+上面是实际界面（自然阶模式载入《小星星》），更多截图见 [§14](#14-截图)。
+
 一个格子 = 一个最小细分单位。格子里可以叠多个音（**和弦**，纵向显示），
 时值大于 1 格的音用横线连过去（**延音**），被延音占用的格子会变暗。
 半音阶模式下虚拟键盘变成 **3 行 × 12 键**（黑键是更窄更深的琴键）。
@@ -370,7 +374,7 @@ wuwa-autoplay/
 ├─ .gitattributes          换行符规则（ps1 保持 CRLF，源码统一 LF）
 ├─ .gitignore              忽略 dist/ build/ settings.json __pycache__ 等
 ├─ .github/workflows/      CI：Windows 上自动跑测试 + 自检
-├─ docs/images/            截图（放进去 README 就会显示）
+├─ docs/images/            README 截图（由 tools/make_screenshots.py 生成）
 ├─ core/                   核心逻辑（不依赖 Qt，可单独测试）
 │  ├─ notes.py             规范音高 Key(octave, semitone) / KeyStroke 组合键 / 映射表与预设
 │  ├─ model.py             Score / ScoreMeta / ScoreNote + 校验
@@ -399,7 +403,9 @@ wuwa-autoplay/
 │  ├─ selftest.py          无界面自检
 │  └─ theme.py             配色与全局样式表
 ├─ assets/app.ico
-├─ tools/make_icon.py      生成图标（纯 Python，无需第三方库）
+├─ tools/                  辅助脚本
+│  ├─ make_icon.py         生成图标（纯 Python，无需第三方库）
+│  └─ make_screenshots.py  生成 README 截图（离屏渲染，不用手动截屏）
 ├─ examples/               示例曲谱（小星星 / 欢乐颂 / 致爱丽丝-片段 / 半音阶练习：JSON + 文本各一份）
 └─ tests/                  无依赖测试（python tests/run_all.py）
 ```
@@ -669,12 +675,7 @@ python main.py --selftest    # 12 项端到端自检
 
 ## 14. 截图
 
-截图见 [`docs/images/`](docs/images/)：`main.png`（主界面）、`chromatic.png`（半音阶模式）、
-`settings.png`（设置 → 半音阶）、`export.png`（导出效果）。
-
-<!-- 图片补齐后，取消下面的注释即可在 README 中直接显示：
-
-| 主界面 | 半音阶模式 |
+| 主界面（自然阶） | 半音阶模式（36 键） |
 |---|---|
 | ![主界面](docs/images/main.png) | ![半音阶](docs/images/chromatic.png) |
 
@@ -682,7 +683,9 @@ python main.py --selftest    # 12 项端到端自检
 |---|---|
 | ![设置](docs/images/settings.png) | ![导出](docs/images/export.png) |
 
--->
+这些图由 `python tools/make_screenshots.py` 自动生成：脚本给窗口打开 `WA_DontShowOnScreen`
+后调用 `QWidget.grab()`，所以走的是真实的 Windows 平台插件（字体与控件风格跟平时一致），
+既不会在桌面上弹窗，也不需要人工截屏。改了界面样式后重新跑一次即可更新。
 
 ---
 
