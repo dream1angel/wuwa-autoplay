@@ -1,0 +1,525 @@
+# Wuthering Waves Auto-Player (wuwa-autoplay)
+
+[中文](README.md) ｜ **English**
+
+<!-- The test badge lights up after the first CI run -->
+[![tests](https://github.com/dream1angel/wuwa-autoplay/actions/workflows/tests.yml/badge.svg)](https://github.com/dream1angel/wuwa-autoplay/actions/workflows/tests.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![platform](https://img.shields.io/badge/platform-Windows%2010%2F11-lightgrey.svg)](#installation)
+
+A Windows desktop app that turns a score you arrange in its editor into simulated keyboard
+input, played back with strict timing inside the Wuthering Waves instrument minigame —
+and it can be remapped to drive other games' music modes too (including an FF14-style preset).
+
+> ⚠️ **Disclaimer: for personal study, practice and entertainment only.**
+> Please check and follow the Wuthering Waves Terms of Service yourself. This tool simulates
+> keyboard input, is not affiliated with the game publisher in any way, and any account risk is
+> borne by the user. The author accepts no liability for any consequence
+> (see [License](#license)).
+
+> 🤖 **Development notice: this project was built by the author together with DSH.**
+> [DSH](https://github.com/deepseek-ai/deepseek-harness) (DeepSeek Harness, an AI coding agent,
+> npm package `@deepseek-ai/dsh`) contributed the architecture, implementation, tests and
+> packaging. Requirements, trade-offs and final acceptance were decided by the author.
+> See [Credits](#development-notice--credits).
+
+---
+
+## Table of contents
+
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Keyboard mapping](#keyboard-mapping)
+- [Note notation](#note-notation)
+- [Editing shortcuts](#editing-shortcuts)
+- [Playback hotkeys](#playback-hotkeys)
+- [Settings](#settings)
+- [Score format](#score-format)
+- [Command line tools](#command-line-tools)
+- [Project layout](#project-layout)
+- [Build a standalone exe](#build-a-standalone-exe)
+- [Testing](#testing)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [Development notice & credits](#development-notice--credits)
+- [License](#license)
+
+---
+
+## Features
+
+* **Two scale modes**
+  * **Diatonic (default, 21 keys)** — three octaves × 7 natural notes, matching the in-game layout;
+  * **Chromatic (optional, 36 keys)** — three octaves × 12 semitones, **off by default**,
+    toggled with **F7** or the transport-bar switch. Fully remappable, combination keys supported,
+    with built-in "all single keys" and "FF14-style" presets.
+* **Strict timing** — measured p99 scheduling jitter **0.02 ms** (goal: < 5 ms).
+  `timeBeginPeriod(1)` + coarse sleep up to 3 ms before the target + busy-spin for the rest.
+* **Safe key handling** — `pydirectinput` (SendInput + scan codes), per-modifier reference counting
+  for combination keys, minimum-interval merging for repeated keys, and a global emergency stop
+  (**F10**) that always releases every key, including modifiers.
+* **Comfortable writing** — hold **Space** to write a chord into one cell, hold **Shift** for a
+  sharp, right-click a piano key to add/remove it, undo/redo (a whole chord gesture is one step),
+  marquee selection, copy/paste, transpose, range checking.
+* **Score I/O** — `.score.json` v1.1 (backwards compatible with v1.0) plus a shareable plain-text
+  notation, and PNG/PDF export.
+* **Focus guard** — pauses automatically when you leave the game window and resumes when you
+  come back (it only arms after the game window was seen once, so a wrong keyword can never
+  pause you at start-up).
+* **Core is UI-free** — `core/` never imports Qt, so the playback engine runs and is benchmarked
+  headlessly.
+
+## Screenshots
+
+See [`docs/images/`](docs/images/): `main.png`, `chromatic.png`, `settings.png`, `export.png`.
+
+<!-- Uncomment once the images are in place:
+
+| Main window | Chromatic mode |
+|---|---|
+| ![Main window](docs/images/main.png) | ![Chromatic](docs/images/chromatic.png) |
+
+| Settings → Chromatic | PNG / PDF export |
+|---|---|
+| ![Settings](docs/images/settings.png) | ![Export](docs/images/export.png) |
+
+-->
+
+---
+
+## Installation
+
+### Option A — prebuilt exe (no Python needed)
+
+Download `wuwa-autoplay.exe` from
+[Releases](https://github.com/dream1angel/wuwa-autoplay/releases) and run it.
+Windows will show a UAC prompt: sending input to a game requires administrator rights.
+
+### Option B — from source
+
+```powershell
+python --version                 # 3.10+, 3.11~3.13 recommended
+git clone https://github.com/dream1angel/wuwa-autoplay.git
+cd wuwa-autoplay
+python -m pip install -r requirements.txt
+python main.py
+```
+
+| Package | Purpose | Required |
+|---|---|---|
+| PySide6 | GUI | ✅ |
+| pydirectinput | Key sending (SendInput + scan codes) | ✅ |
+| keyboard | Global hotkeys | ✅ |
+| pyinstaller | Building the exe | only for packaging |
+| interception | Kernel-level key backend (needs a driver) | optional |
+
+---
+
+## Quick start
+
+1. **Write a score** — type `q w e r t y u` (high), `a s d f g h j` (middle), `z x c v b n m` (low);
+   the cursor advances automatically. You can also click the on-screen piano.
+2. **Set the tempo** — BPM (40–300), time signature, minimum subdivision (1/4, 1/8, 1/16, 1/32 beat).
+3. **Dry run** — switch the backend to "dummy" (rehearsal, no keys are sent) and press play to
+   check the rhythm.
+4. **Play for real** — switch back to pydirectinput, click **▶ Start (F8)**, then switch to the game
+   within the 3-second countdown; the window minimizes itself.
+5. **Panic button** — **F10** releases every key immediately; **F9** pauses/resumes; **Esc** exits
+   playback mode.
+
+---
+
+## Keyboard mapping
+
+The game has 21 natural notes; the optional chromatic mode adds the 15 sharps for 36 notes in total.
+
+### Diatonic mode (default, 21 keys)
+
+| Octave | Keys (left → right = degrees 1–7) |
+|---|---|
+| High | `q w e r t y u` |
+| Middle | `a s d f g h j` |
+| Low | `z x c v b n m` |
+
+### Chromatic mode (36 keys)
+
+| semitone | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| degree | 1 | #1 | 2 | #2 | 3 | 4 | #4 | 5 | #5 | 6 | #6 | 7 |
+| note | C | C# | D | D# | E | F | F# | G | G# | A | A# | B |
+| white/black | W | **B** | W | **B** | W | W | **B** | W | **B** | W | **B** | W |
+
+**Preset A — all single keys (default, best compatibility)**
+
+| Octave | Natural (1 2 3 4 5 6 7) | Sharps (#1 #2 #4 #5 #6) |
+|---|---|---|
+| High | `Q W E R T Y U` | `2 3 5 6 7` |
+| Middle | `A S D F G H J` | `1 4 8 9 0` |
+| Low | `Z X C V B N M` | `I O P K L` |
+
+The 21 natural keys are **identical** to diatonic mode, so switching modes does not change muscle
+memory, and all 36 notes are single keys.
+
+**Preset B — FF14 style (piano-interleaved, modifier octave banks)**
+
+One row of 12 piano-interleaved keys — `Z S X D C V G B H N J M` — is used for the middle octave;
+`Ctrl+` that row for the low octave and `Shift+` it for the high octave (36 keys total).
+FF14's native performance layout cannot reach three octaves simultaneously, so this preset keeps its
+feel while making all 36 notes reachable at once. It needs the game to accept modified keybinds,
+so it is an advanced preset.
+
+> Most games only bind single physical keys. Check the built-in
+> "combination-key compatibility self-test" in **Settings → Chromatic** before relying on preset B.
+
+---
+
+## Note notation
+
+Both scale modes use the same numbered-notation symbols in the grid — **pitch, not key**:
+
+| Symbol | Meaning |
+|---|---|
+| `1` … `7` | middle octave (no dot) |
+| digit with a **dot above** | high octave |
+| digit with a **dot below** | low octave |
+| `#1`, `#4` | sharp (black key; the cell turns purple) |
+
+Dots are drawn with QPainter (not Unicode combining characters, which render unreliably in many CJK
+fonts), and the PNG/PDF export uses the exact same drawing code.
+
+---
+
+## Editing shortcuts
+
+| Key | Action |
+|---|---|
+| `q w e r t y u` / `a s d f g h j` / `z x c v b n m` | notes (high / middle / low) |
+| `1`–`7` | middle octave in numbered notation (diatonic mode) |
+| **hold `Space` + several notes** | write a **chord**: every note goes into the same cell; the cursor advances when you release Space |
+| `Space` (tap) | rest (clear the cell and move on) |
+| **right-click the piano** | add / remove a note in the current cell (cursor stays) |
+| `Backspace` / `Delete` | delete backwards / clear the cell (or the selection) |
+| `← → ↑ ↓` | move the cursor; **with a selection, the whole selection box moves** |
+| `Shift + arrows` | extend / shrink the selection |
+| `Esc` | clear the selection |
+| mouse drag | marquee-select a phrase |
+| `[` / `-`, `]` / `=` | shorten / lengthen the duration (tie) |
+| `Ctrl+C / X / V`, `Ctrl+Shift+V`, `Ctrl+D` | copy / cut / paste (merge), paste (overwrite), duplicate |
+| `Ctrl+Z / Ctrl+Y` | undo / redo (one chord gesture = one step) |
+| `Ctrl+A` | select all |
+| `Ctrl+Up / Down`, `Ctrl+Left / Right` | transpose the selection by an octave / a degree |
+| `Ctrl+R` | range check (out-of-range notes turn red) |
+
+**Chromatic-only**
+
+| Key | Action |
+|---|---|
+| **modifier + note** | write a sharp — `Shift` by default (`Shift+S` = middle #2). The modifier is configurable (Shift / Ctrl / Alt / none) |
+| `#` then a note | alternative sharp input when the modifier is set to "none" |
+| `Ctrl+Shift+Left / Right` | transpose the selection by a semitone |
+| `Ctrl+Shift+Down / Up` | transpose the selection by an octave (±12 semitones) |
+
+> `Ctrl+letter` is **not** used as the sharp modifier by default because this app's own shortcuts
+> already own those combinations (Qt handles action shortcuts before key events), and because
+> `Shift` is the usual notation for a sharp.
+
+---
+
+## Playback hotkeys
+
+| Default | Action | Registered |
+|---|---|---|
+| **`F7`** | toggle chromatic mode (disabled while playing) | at start-up |
+| `F8` | start / stop playback | at start-up |
+| `F9` | pause / resume | at start-up |
+| `F10` | emergency stop (releases every key, modifiers included) | at start-up |
+| `Esc` | leave playback mode | only while playing |
+
+All of them can be changed in Settings, with conflict detection, and the whole global-hotkey hook
+can be switched off.
+
+---
+
+## Settings
+
+* **Playback** — key hold time (30 ms), chord/combination stagger (1.5 ms), minimum key interval
+  (25 ms, for games that throttle very fast repeats), start countdown (3 s).
+* **Keys & window** — key backend and availability probe; target-window keyword (default
+  `Wuthering Waves|鸣潮|Client-Win64-Shipping`; a title **or** process-name match counts);
+  pause-on-focus-loss.
+* **Hotkeys** — press a key (or combination) to capture it; conflicts are reported on save.
+* **Keymap** — remap the 21 diatonic notes.
+* **Chromatic** — enable switch, preset dropdown, 36-key editor (combination keys supported),
+  sharp modifier, black-key downgrade policy, combination-key self-test.
+* **Interface** — global hotkeys on/off, auto-scroll, undo depth.
+
+---
+
+## Score format
+
+### `.score.json` (v1.1, reads v1.0)
+
+```json
+{
+  "format": "wuthering-score",
+  "version": "1.1",
+  "meta": {
+    "title": "Twinkle Twinkle", "author": "",
+    "bpm": 120, "timeSignature": [4, 4], "subdivision": 4,
+    "mode": "diatonic", "referenceMidi": 60, "chromaticPreset": "chromatic-36"
+  },
+  "notes": [
+    { "beat": 0, "duration": 4, "keys": [{ "octave": 0, "degree": 1 }] },
+    { "beat": 4, "duration": 4, "keys": [{ "octave": 0, "semitone": 1 }] },
+    { "beat": 8, "duration": 2, "keys": [{ "midi": 66 }] }
+  ]
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `beat` | position in **grid slots** (may be fractional) |
+| `duration` | length in slots (≥ 1) |
+| `subdivision` | **slots per beat**: 1/4 beat → 4, 1/8 → 8, 1/16 → 16, 1/32 → 32 |
+| `octave` | `-1` low / `0` middle / `1` high |
+| `degree` | `1`–`7` (natural notes) |
+| `semitone` | `0`–`11` (chromatic) |
+| `midi` | absolute MIDI note, `referenceMidi ± 36` |
+
+Priority of the three key spellings: **`midi` > `semitone` > `degree`**.
+A rest is simply the absence of a note at that position.
+Black keys in chromatic scores also carry an approximate `degree` so older readers degrade
+gracefully instead of failing.
+
+Timing: `ms per slot = 60000 / (bpm × subdivision)` (divided again by the speed multiplier).
+
+> Scores only store **pitch** — never letters. Which key to press comes from the mapping table in
+> `core/notes.py` (user-overridable), so remapping never breaks existing scores.
+
+### Plain-text notation (for sharing)
+
+```
+# wuthering-score text 1.0
+# title: Twinkle
+# bpm: 120
+# time: 4/4
+# sub: 4
+# mode: chromatic
+#
+1 #1 2 #2 3 4 #4 5 | #5 6 #6 7 +1 +#1 +2 +#2 |
+```
+
+| Token | Meaning |
+|---|---|
+| `Q W E R T Y U` / `A S D F G H J` / `Z X C V B N M` | high / middle / low notes |
+| `-` | tie (extend the previous note by one slot) |
+| `0` `.` `_` | rest |
+| `\|` | bar line (layout only) |
+| `A+F`, `[AF]` | chord |
+| `1`–`7` | numbered notation (interpreted as pitch, independent of keymap) |
+| `#1`, `+#1`, `-#4` | sharp / high sharp / low sharp |
+| `C#4`, `Db5`, `A4` | note names (4 = middle octave) |
+| `高3` `中3` `低3` | Chinese octave prefixes |
+
+Comments start with `# ` (hash + space) or `//`, so a line starting with `#1` is still music.
+
+---
+
+## Command line tools
+
+Works without a GUI, useful for batch checking or machines without a display:
+
+```powershell
+python cli.py check       examples\小星星.score.json       # validate and report playability
+python cli.py stats       examples\致爱丽丝-片段.score.json --json
+python cli.py play        examples\小星星.score.json --backend dummy    # rhythm-only dry run
+python cli.py play        examples\半音阶练习.score.json --backend pydirectinput --countdown 3
+python cli.py export-text examples\小星星.score.json
+```
+
+Headless self-test (also available in the packaged exe):
+
+```powershell
+python main.py --selftest
+dist\wuwa-autoplay.exe --selftest      # result is also written to selftest.log
+```
+
+The self-test does: build the window → write notes → edit/undo/redo → transpose and range check →
+switch to chromatic and write black keys → chord gesture and combination keys → switch back to
+diatonic (black-key downgrade) → play through with the dummy backend → export PNG/PDF →
+JSON round-trip. Exit code 0 means everything passed.
+
+---
+
+## Project layout
+
+```
+wuwa-autoplay/
+├─ main.py / cli.py           GUI entry point / command line tools
+├─ requirements.txt
+├─ build_exe.ps1              one-command PyInstaller build
+├─ wuwa_autoplay.spec         PyInstaller config (uac_admin=True)
+├─ README.md / README_EN.md   documentation (Chinese / English)
+├─ PROMPT.md                  the v2 specification this project was built against
+├─ core/                      pure Python core (no Qt, unit-testable headlessly)
+├─ scoreio/                   file layer (JSON / text / PNG / PDF)
+├─ ui/                        PySide6 widgets
+├─ assets/ tools/ examples/   icon, icon generator, example scores
+└─ tests/                     zero-dependency test suite (python tests/run_all.py)
+```
+
+---
+
+## Build a standalone exe
+
+```powershell
+powershell -ExecutionPolicy Bypass -File build_exe.ps1 -Clean              # single file + UAC manifest
+powershell -ExecutionPolicy Bypass -File build_exe.ps1 -Clean -Selftest    # also run exe --selftest
+powershell -ExecutionPolicy Bypass -File build_exe.ps1 -OneDir             # folder build (faster start)
+```
+
+The result is `dist\wuwa-autoplay.exe` (~36 MB). Notes:
+
+* the spec sets `uac_admin=True`, so the exe asks for elevation on launch;
+* `$env:WUWA_NO_ADMIN='1'` builds without the admin manifest (handy on machines that cannot elevate);
+* antivirus false positives: whitelist the exe, or use `-OneDir`;
+* the single-file build unpacks to a temp folder on first start, which takes 1–3 seconds.
+
+---
+
+## Testing
+
+```powershell
+python tests\run_all.py              # 127 test cases
+python tests\run_all.py test_engine  # filter by file name
+python tests\run_all.py -v           # per-case timings
+```
+
+| File | Coverage |
+|---|---|
+| `test_model.py` | pitch model (degree/semitone/MIDI), mapping, notation, validation, JSON shape |
+| `test_timeline.py` | slot/bar maths, chords, ties, region copy/paste, undo stack (incl. merge keys) |
+| `test_engine.py` | event expansion, hold shortening, chord stagger, repeat merging, **measured jitter**, pause/resume, F10, stuck-key guards |
+| `test_chromatic.py` | the 9 chromatic acceptance items (presets vs docs, combination keys, mode switching, v1.0/v1.1 JSON, text notation, timing) |
+| `test_scoreio.py` | atomic writes, error messages, version compatibility, text round-trip, PNG/PDF export |
+| `test_config.py` | settings round-trip, sanitising, migration, hotkey normalisation/debounce |
+| `test_gui.py` | offscreen smoke tests: editing, playback, settings, chromatic UI, real-event-chain arrow keys and Space chord gesture |
+
+GUI tests run with `QT_QPA_PLATFORM=offscreen` — no windows pop up and no real keys are sent.
+Timing thresholds can be relaxed for noisy CI machines with
+`WUWA_TEST_JITTER_P99_MS` / `WUWA_TEST_JITTER_MEAN_MS`.
+
+---
+
+## FAQ
+
+**The game does not react at all.**
+Run the app as administrator (games usually run elevated), make sure the backend is
+`pydirectinput`, and confirm the rhythm with the dummy backend first.
+
+**Notes are dropped.** Increase "key hold time" to 40–60 ms.
+
+**Repeated notes stick together.** Increase "minimum key interval"; the engine merges repeats that
+are too close into a single long press.
+
+**How do I switch on chromatic mode?** Press **F7** or use the transport-bar switch. It is off by
+default so that existing users see no behaviour change.
+
+**Why is `Shift`, not `Ctrl`, the sharp modifier?** This app's own `Ctrl+letter` shortcuts
+(save, undo, copy, select-all, …) are handled by Qt before key events, so they would win.
+`Shift+letter` is unused by both Windows and this app, and matches musical notation.
+
+**How do I write a chord?** Hold **Space** and type the notes (the cursor moves when you release),
+or right-click piano keys to add/remove notes without moving the cursor. A whole gesture is a single
+undo step.
+
+**Combination keys from the FF14 preset do nothing.** Many games only accept single physical keys;
+use the "all single keys" preset, or run the combination-key self-test in Settings first.
+
+**My keybinds differ from q/a/z.** Remap them in Settings → Keymap (diatonic) or Settings →
+Chromatic (36 keys). Existing scores are unaffected because they store pitch only.
+
+**Why do the cells show numbers instead of key letters?** The grid shows pitch in numbered notation
+so both modes read the same way; the on-screen piano shows which key to press.
+
+**Arrow keys do not move the selection box (old builds).** Fixed: the scroll area used to swallow
+arrow keys for scrolling. Now arrows move the cursor, or translate the whole selection box when one
+exists.
+
+**The exe asks for permission / is blocked by antivirus.** It carries a UAC admin manifest on
+purpose; whitelist it if your security software flags the single-file build.
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome. Please run the tests before opening a PR:
+
+```powershell
+python tests\run_all.py      # 127 cases, should be all green
+python main.py --selftest    # 12 end-to-end checks
+```
+
+Conventions:
+
+* **Keep the layering**: `core/` must not import Qt (it has to stay headlessly testable);
+  file I/O lives in `scoreio/`, widgets in `ui/`.
+* **Bring tests** for new behaviour; pure logic tests belong in `tests/` and must run with the
+  zero-dependency runner.
+* **Keyboard-event changes need real-event-chain tests**: `tests/test_gui.py::_send_to_window`
+  posts the event to the top-level window so Qt performs its real focus/propagation walk.
+  Calling `window.keyPressEvent()` directly bypasses widgets such as `QScrollArea` and has hidden
+  real bugs before.
+* **Comments and user-facing strings are in Chinese** — the primary audience is Chinese-speaking
+  players.
+* **Scores must not contain key letters**: store `{octave, degree}` / `{octave, semitone}` /
+  `{midi}` only.
+* **Example scores must be public domain, traditional or original.** Bundled examples are
+  *Twinkle Twinkle Little Star* (traditional), *Ode to Joy* and *Für Elise* (Beethoven, public
+  domain) and *Chromatic Exercise* (generated by this project). Do not submit transcriptions of
+  copyrighted film, game or pop music.
+
+---
+
+## Development notice & credits
+
+**Development notice**: this project was built by the author
+([@dream1angel](https://github.com/dream1angel)) together with **DSH**
+(DeepSeek Harness, an AI coding agent, npm package `@deepseek-ai/dsh`).
+
+* **The author** defined the requirements and priorities, made the UI/UX trade-offs, ran the
+  in-game tests and tuning, and owns final acceptance and release decisions.
+* **DSH** contributed the technical design and directory layout, the implementation, the test
+  suites and regression checks, the packaging scripts and the documentation.
+* Every judgement call (chromatic mode off by default, `Shift` as the sharp modifier, only one
+  main key per combination, …) was confirmed by the author.
+
+In short: **the code was mostly written by AI; the requirements and the responsibility belong to
+the author.** This notice exists so users know where the code comes from, and so other projects can
+see what this kind of human–AI collaboration looks like.
+
+**Open-source credits**
+
+| Project | Used for |
+|---|---|
+| [PySide6 / Qt](https://www.qt.io/) | GUI, PNG/PDF export |
+| [pydirectinput](https://github.com/learncodebygaming/pydirectinput) | SendInput + scan-code key simulation |
+| [keyboard](https://github.com/boppreh/keyboard) | Global hotkeys |
+| [PyInstaller](https://pyinstaller.org/) | Standalone exe packaging |
+
+Reference for the FF14-style preset:
+[FFXIV Lodestone blog — Bard Performance](https://na.finalfantasyxiv.com/lodestone/character/5624510/blog/3708574/).
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE) — free to use, modify and redistribute (commercial use
+included), provided **as is, without warranty of any kind**.
+
+```
+Copyright (c) 2026 dream1angel
+```

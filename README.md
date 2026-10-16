@@ -1,5 +1,7 @@
 # 鸣潮自动演奏器（wuwa-autoplay）
 
+**中文** ｜ [English](README_EN.md)
+
 <!-- 徽标在第一次 CI 跑完后就会亮 -->
 [![tests](https://github.com/dream1angel/wuwa-autoplay/actions/workflows/tests.yml/badge.svg)](https://github.com/dream1angel/wuwa-autoplay/actions/workflows/tests.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -361,7 +363,8 @@ wuwa-autoplay/
 ├─ requirements.txt
 ├─ build_exe.ps1           一键打包（含 exe 自检）
 ├─ wuwa_autoplay.spec      PyInstaller 配置（uac_admin=True）
-├─ README.md
+├─ README.md               中文说明（主文档）
+├─ README_EN.md            English documentation
 ├─ PROMPT.md               需求提示词 v2（含「半音阶模式」规格 + 实施状态表）
 ├─ LICENSE                 MIT
 ├─ .gitattributes          换行符规则（ps1 保持 CRLF，源码统一 LF）
@@ -666,13 +669,11 @@ python main.py --selftest    # 12 项端到端自检
 
 ## 14. 截图
 
-<!--
-截图还没放进来，先注释掉，免得仓库首页显示破图。
-把 4 张图按 docs/images/README.md 的命名放进 docs/images/ 后，
-删掉下面这段注释标记即可显示：
--->
+截图见 [`docs/images/`](docs/images/)：`main.png`（主界面）、`chromatic.png`（半音阶模式）、
+`settings.png`（设置 → 半音阶）、`export.png`（导出效果）。
 
-<!--
+<!-- 图片补齐后，取消下面的注释即可在 README 中直接显示：
+
 | 主界面 | 半音阶模式 |
 |---|---|
 | ![主界面](docs/images/main.png) | ![半音阶](docs/images/chromatic.png) |
@@ -680,9 +681,8 @@ python main.py --selftest    # 12 项端到端自检
 | 设置 → 半音阶 | 导出 PNG / PDF |
 |---|---|
 | ![设置](docs/images/settings.png) | ![导出](docs/images/export.png) |
--->
 
-截图存放在 `docs/images/`（命名与截取建议见该目录的 [README](docs/images/README.md)）。
+-->
 
 ---
 
@@ -722,6 +722,3 @@ python main.py --selftest    # 12 项端到端自检
 ```
 Copyright (c) 2026 dream1angel
 ```
-
-> 想改用真实姓名或其它署名：编辑 `LICENSE` 里 `Copyright (c) 2026 ...` 那一行
-> （MIT 正文第 3 行），然后 `git commit -am "docs: 署名" && git push`。
