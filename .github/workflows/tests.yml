@@ -1,0 +1,45 @@
+name: tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }} / Windows
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+
+    env:
+      PYTHONIOENCODING: utf-8
+      # 无显示器的 CI 上用 Qt 的离屏平台跑 GUI 冒烟测试
+      QT_QPA_PLATFORM: offscreen
+      # 共享 runner 的调度噪音比本机大得多：只放宽「计时抖动」类断言的门槛，
+      # 本机默认仍是 5ms（见 tests/test_engine.py）
+      WUWA_TEST_JITTER_P99_MS: "20"
+      WUWA_TEST_JITTER_MEAN_MS: "6"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: 运行测试（127 项）
+        run: python tests/run_all.py -v
+
+      - name: 无界面自检（12 项）
+        run: python main.py --selftest

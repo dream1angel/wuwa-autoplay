@@ -1,0 +1,203 @@
+{
+  "format": "wuthering-score",
+  "version": "1.1",
+  "meta": {
+    "title": "致爱丽丝-片段",
+    "author": "",
+    "bpm": 120,
+    "timeSignature": [
+      4,
+      4
+    ],
+    "subdivision": 4,
+    "mode": "chromatic",
+    "referenceMidi": 60,
+    "chromaticPreset": "chromatic-36"
+  },
+  "notes": [
+    {
+      "beat": 0.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 1.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 2.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 3.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 4.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 5.0,
+      "duration": 2.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 7.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 8.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 9.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 16.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 17.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 18.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 19.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 20.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 21.0,
+      "duration": 2.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 23.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 24.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 25.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 9
+        }
+      ]
+    }
+  ]
+}

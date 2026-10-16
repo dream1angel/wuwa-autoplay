@@ -1,0 +1,29 @@
+# 统一换行符处理，避免 Windows/Linux 贡献者之间出现整文件 diff
+* text=auto
+
+# 源码与文档：仓库里统一用 LF
+*.py    text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.json  text eol=lf
+*.spec  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+LICENSE text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf
+
+# Windows 脚本要 CRLF（build_exe.ps1 还带 UTF-8 BOM，Windows PowerShell 5.1 依赖它）
+*.ps1   text eol=crlf
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+
+# 二进制资源不做任何转换
+*.ico   binary
+*.png   binary
+*.pdf   binary
+*.exe   binary
+*.dll   binary
+
+# 让 GitHub 的 linguist 不要把示例曲谱算成主要语言
+examples/*.txt  linguist-vendored

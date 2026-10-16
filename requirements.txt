@@ -1,0 +1,11 @@
+# 运行依赖
+PySide6>=6.7
+pydirectinput>=1.0.4
+keyboard>=0.13.5
+
+# 打包 exe 时才需要（README「打包」一节）
+pyinstaller>=6.6
+
+# 可选：内核级按键后端（需要在系统里额外安装 Interception 驱动并重启）
+# 不装也能正常使用，只是设置页里的「Interception 驱动」选项不可用。
+# interception>=1.5.0

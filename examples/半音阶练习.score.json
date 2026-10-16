@@ -1,0 +1,769 @@
+{
+  "format": "wuthering-score",
+  "version": "1.1",
+  "meta": {
+    "title": "半音阶练习",
+    "author": "",
+    "bpm": 120,
+    "timeSignature": [
+      4,
+      4
+    ],
+    "subdivision": 4,
+    "mode": "chromatic",
+    "referenceMidi": 60,
+    "chromaticPreset": "chromatic-36"
+  },
+  "notes": [
+    {
+      "beat": 0.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 1.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 1,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 2.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 3.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 4.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 5.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 5
+        }
+      ]
+    },
+    {
+      "beat": 6.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 6,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 7.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 7
+        }
+      ]
+    },
+    {
+      "beat": 8.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 8,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 9.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 10.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 10,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 11.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 12.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 13.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 1,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 14.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 15.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 16.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 17.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 5
+        }
+      ]
+    },
+    {
+      "beat": 18.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 6,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 19.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 7
+        }
+      ]
+    },
+    {
+      "beat": 20.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 8,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 21.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 22.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 10,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 23.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 24.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 25.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 1,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 26.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 27.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 28.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 29.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 5
+        }
+      ]
+    },
+    {
+      "beat": 30.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 6,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 31.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 7
+        }
+      ]
+    },
+    {
+      "beat": 32.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 8,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 33.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 34.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 10,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 35.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 36.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 37.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 10,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 38.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 39.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 8,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 40.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 7
+        }
+      ]
+    },
+    {
+      "beat": 41.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 6,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 42.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 5
+        }
+      ]
+    },
+    {
+      "beat": 43.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 44.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 45.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 46.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 1,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 47.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 1,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 48.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 49.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 10,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 50.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 51.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 8,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 52.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 7
+        }
+      ]
+    },
+    {
+      "beat": 53.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 6,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 54.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 5
+        }
+      ]
+    },
+    {
+      "beat": 55.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 56.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 57.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 58.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 1,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 59.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": 0,
+          "semitone": 0
+        }
+      ]
+    },
+    {
+      "beat": 60.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 11
+        }
+      ]
+    },
+    {
+      "beat": 61.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 10,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 62.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 9
+        }
+      ]
+    },
+    {
+      "beat": 63.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 8,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 64.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 7
+        }
+      ]
+    },
+    {
+      "beat": 65.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 6,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 66.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 5
+        }
+      ]
+    },
+    {
+      "beat": 67.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 4
+        }
+      ]
+    },
+    {
+      "beat": 68.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 3,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 69.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 2
+        }
+      ]
+    },
+    {
+      "beat": 70.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 1,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 71.0,
+      "duration": 1.0,
+      "keys": [
+        {
+          "octave": -1,
+          "semitone": 0
+        }
+      ]
+    }
+  ]
+}

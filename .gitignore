@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# PyInstaller
+build/
+dist/
+
+# 运行期生成（便携模式）
+settings.json
+logs/
+tests/_tmp/
+
+# 本地自用曲谱：扒谱第三方版权作品（影视 / 游戏 / 流行乐）不适合随开源仓库发布，
+# 自己留着弹没问题，但别提交上去。仓库里的示例只用公有领域或本项目原创的旋律。
+examples/天空之城.txt

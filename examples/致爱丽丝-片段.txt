@@ -1,0 +1,10 @@
+# wuthering-score text 1.0
+# title: 致爱丽丝-片段
+# author: 
+# bpm: 120
+# time: 4/4
+# sub: 4
+# mode: chromatic
+#
++3 +#2 +3 +#2 +3 7 - +2 +1 6 - - - 0 0 0 |
++3 +#2 +3 +#2 +3 7 - +2 +1 6 - - - 0 0 0 |

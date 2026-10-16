@@ -1,0 +1,446 @@
+{
+  "format": "wuthering-score",
+  "version": "1.1",
+  "meta": {
+    "title": "小星星",
+    "author": "",
+    "bpm": 120,
+    "timeSignature": [
+      4,
+      4
+    ],
+    "subdivision": 4,
+    "mode": "diatonic",
+    "referenceMidi": 60
+  },
+  "notes": [
+    {
+      "beat": 0.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 4.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 8.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 12.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 16.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 20.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 24.0,
+      "duration": 8.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 32.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 36.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 40.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 44.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 48.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 52.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 56.0,
+      "duration": 8.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 64.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 68.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 72.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 76.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 80.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 84.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 88.0,
+      "duration": 8.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 96.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 100.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 104.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 108.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 112.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 116.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 120.0,
+      "duration": 8.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 128.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 132.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 1
+        }
+      ]
+    },
+    {
+      "beat": 136.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 140.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 144.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 148.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 6
+        }
+      ]
+    },
+    {
+      "beat": 152.0,
+      "duration": 8.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    },
+    {
+      "beat": 160.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 164.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 4
+        }
+      ]
+    },
+    {
+      "beat": 168.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 172.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 3
+        }
+      ]
+    },
+    {
+      "beat": 176.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 180.0,
+      "duration": 4.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 2
+        }
+      ]
+    },
+    {
+      "beat": 184.0,
+      "duration": 8.0,
+      "keys": [
+        {
+          "octave": 0,
+          "degree": 1
+        },
+        {
+          "octave": 0,
+          "degree": 3
+        },
+        {
+          "octave": 0,
+          "degree": 5
+        }
+      ]
+    }
+  ]
+}
