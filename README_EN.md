@@ -501,6 +501,11 @@ In short: **the code was mostly written by AI; the requirements and the responsi
 the author.** This notice exists so users know where the code comes from, and so other projects can
 see what this kind of human–AI collaboration looks like.
 
+The **original requirement prompt** handed to the AI is in the repository: [`PROMPT.md`](PROMPT.md)
+(Chinese only, kept in its raw second-person voice). It is written to state the requirements once,
+deliver module by module, and tick them off against an acceptance table — if that structure is
+useful for your own AI-assisted project, take it, rewrite it, no credit needed.
+
 **Open-source credits**
 
 | Project | Used for |
